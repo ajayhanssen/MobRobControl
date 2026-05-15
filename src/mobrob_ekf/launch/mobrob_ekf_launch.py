@@ -14,7 +14,9 @@ def generate_launch_description():
 
     pkg_share = get_package_share_directory('mobrob_ekf')
 
-    rviz_config = os.path.join(pkg_share, 'rviz', 'mobrob.rviz')
+    rviz_config = os.path.join(pkg_share, 'rviz', 'ekf2.rviz')
+
+    ekf_config_path = os.path.join(pkg_share, 'config', 'ekf.yaml')
 
     use_rviz_arg = DeclareLaunchArgument(
         'use_rviz',
@@ -28,19 +30,26 @@ def generate_launch_description():
 
         use_rviz_arg,
 
-        # tf2 broadcaster
         Node(
-            package='mobrob',
-            executable='tf2_broadcaster',
-            name='tf2_broadcaster1',
-            parameters=[
-                {'robname': 'rob1'}
-            ]
+            package='robot_localization',
+            executable='ekf_node',
+            name='ekf_filter_node_local',
+            output='screen',
+            parameters=[ekf_config_path],
+            remappings=[('/odometry/filtered', '/odometry/local')]
+        ),
+        Node(
+            package='robot_localization',
+            executable='ekf_node',
+            name='ekf_filter_node_global',
+            output='screen',
+            parameters=[ekf_config_path],
+            remappings=[('/odometry/filtered', '/odometry/global')]
         ),
 
         # rob controller
         Node(
-            package='mobrob',
+            package='mobrob_ekf',
             executable='controller',
             name='controller1',
             parameters=[
@@ -53,7 +62,7 @@ def generate_launch_description():
 
         # camera
         Node(
-            package='mobrob',
+            package='mobrob_ekf',
             executable='camera',
             name='cam',
             parameters=[
@@ -62,7 +71,7 @@ def generate_launch_description():
         ),
         # path
         Node(
-            package='mobrob',
+            package='mobrob_ekf',
             executable='path_publisher',
             name='path_pub',
             parameters=[
@@ -81,7 +90,7 @@ def generate_launch_description():
 
         # or pygame
         Node(
-            package='mobrob',
+            package='mobrob_ekf',
             executable='visualizer',
             name='tv_visualizer',
             condition=UnlessCondition(use_rviz),
