@@ -13,10 +13,9 @@ import os
 def generate_launch_description():
 
     pkg_share = get_package_share_directory('mobrob_ekf')
-
     rviz_config = os.path.join(pkg_share, 'rviz', 'ekf_v3.rviz')
-
     ekf_config_path = os.path.join(pkg_share, 'config', 'ekf.yaml')
+    twist_mux_config_path = os.path.join(pkg_share, 'config', 'twist_mux.yaml')
 
     use_sim_time_arg = DeclareLaunchArgument(
         'use_sim_time',
@@ -65,6 +64,26 @@ def generate_launch_description():
                  'lookahead_dist': 0.3,
                  },
                  use_sim_time,
+            ]
+        ),
+
+        Node(
+            package='twist_mux',
+            executable='twist_mux',
+            name='twist_mux',
+            output='screen',
+            parameters=[twist_mux_config_path],
+            remappings=[('/cmd_vel_out', '/rob1/cmd_vel')]
+        ),
+
+        # watchdog
+        Node(
+            package='mobrob_ekf',
+            executable='watchdog',
+            name='watchdog_cam',
+            parameters=[
+                {'robname': 'rob1'},
+                use_sim_time,
             ]
         ),
 

@@ -1,6 +1,5 @@
 #-------------------------------------------------------------------------------#
 import rclpy
-import math
 import random
 from rclpy.node import Node
 from nav_msgs.msg import Odometry
@@ -14,7 +13,7 @@ class CameraSimNode(Node):
 
         self._latest_odom: Odometry | None = None
 
-        #self.declare_parameter('use_sim_time', True)
+        self.declare_parameter('enable_publishing', True)
 
         self.create_subscription(Odometry, '/rob1/odom', self._odom_callback, 10)
         self.pose_pub = self.create_publisher(PoseWithCovarianceStamped, '/rob1/pose', 10)
@@ -26,6 +25,10 @@ class CameraSimNode(Node):
 
     def _publish_pose(self):
         if self._latest_odom is None:
+            return
+        
+        enabled = self.get_parameter('enable_publishing').get_parameter_value().bool_value
+        if not enabled:
             return
 
         src_pose = self._latest_odom.pose.pose

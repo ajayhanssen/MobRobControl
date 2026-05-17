@@ -37,7 +37,7 @@ class MobrobController(Node):
         self.path_sub = self.create_subscription(Path, f'/{self.robname}/path', self.path_callback, 10)
 
         # velocity publisher
-        self.ctrl_cmd_pub = self.create_publisher(Twist, f'/{self.robname}/cmd_vel', 10)
+        self.ctrl_cmd_pub = self.create_publisher(Twist, f'/{self.robname}/cmd_vel_nav', 10)
 
         # create 10Hz control loop
         self.timer = self.create_timer(0.1, self.control_loop)

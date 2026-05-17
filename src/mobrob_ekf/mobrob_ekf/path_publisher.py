@@ -43,7 +43,7 @@ class PathPublisher(Node):
             msg.poses.append(pose)
 
         self.publisher.publish(msg)
-        #self.get_logger().info(f"Published circular path with {num_points} points")
+        #self.get_logger().info(f"Published circle path with {num_points} points")
 
 
 def main(args=None):
