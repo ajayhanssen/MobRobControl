@@ -39,3 +39,8 @@ ros2 topic pub /rob1/cmd_vel_emergency geometry_msgs/msg/Twist '{linear: {x: 0.0
 ~~~
 ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=/rob1/cmd_vel_teleop --param scale_linear:=0.1 --param scale_angular:=0.1
 ~~~
+
+### Disable cam publishing for emergency stop
+~~~
+ros2 param set /cam enable_publishing false
+~~~
