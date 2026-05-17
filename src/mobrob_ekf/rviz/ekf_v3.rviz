@@ -7,10 +7,13 @@ Panels:
         - /Global Options1
         - /Status1
         - /TF1/Frames1
+        - /Odometry1
         - /Odometry1/Shape1
         - /Odometry1/Covariance1
-        - /PoseWithCovariance1/Covariance1/Position1
-        - /PoseWithCovariance1/Covariance1/Orientation1
+        - /Odometry2
+        - /Odometry2/Shape1
+        - /PoseWithCovariance1
+        - /PoseWithCovariance1/Covariance1
       Splitter Ratio: 0.5
     Tree Height: 629
   - Class: rviz_common/Selection
@@ -121,7 +124,7 @@ Visualization Manager:
           Value: true
         Value: true
       Enabled: true
-      Keep: 100
+      Keep: 50
       Name: Odometry
       Position Tolerance: 0.10000000149011612
       Shape:
@@ -159,8 +162,8 @@ Visualization Manager:
           Scale: 1
           Value: false
         Value: true
-      Enabled: false
-      Keep: 100
+      Enabled: true
+      Keep: 50
       Name: Odometry
       Position Tolerance: 0.10000000149011612
       Shape:
@@ -180,16 +183,16 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /odometry/local
-      Value: false
+      Value: true
     - Alpha: 1
       Axes Length: 1
       Axes Radius: 0.10000000149011612
       Class: rviz_default_plugins/PoseWithCovariance
-      Color: 255; 240; 24
+      Color: 85; 170; 255
       Covariance:
         Orientation:
           Alpha: 0.5
-          Color: 255; 255; 127
+          Color: 170; 255; 255
           Color Style: Unique
           Frame: Local
           Offset: 1
@@ -199,7 +202,7 @@ Visualization Manager:
           Alpha: 0.30000001192092896
           Color: 30; 175; 204
           Scale: 1
-          Value: true
+          Value: false
         Value: true
       Enabled: true
       Head Length: 0.30000001192092896
@@ -277,10 +280,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5447978377342224
+      Pitch: 0.724797785282135
       Target Frame: world
       Value: Orbit (rviz)
-      Yaw: 4.958583831787109
+      Yaw: 4.833584785461426
     Saved:
       - Class: rviz_default_plugins/Orbit
         Distance: 1.870099425315857
@@ -318,5 +321,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1346
-  X: 2680
-  Y: 264
+  X: 2648
+  Y: 232
