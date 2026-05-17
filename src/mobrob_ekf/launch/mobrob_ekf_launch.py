@@ -14,7 +14,7 @@ def generate_launch_description():
 
     pkg_share = get_package_share_directory('mobrob_ekf')
 
-    rviz_config = os.path.join(pkg_share, 'rviz', 'ekf2.rviz')
+    rviz_config = os.path.join(pkg_share, 'rviz', 'ekf_v3.rviz')
 
     ekf_config_path = os.path.join(pkg_share, 'config', 'ekf.yaml')
 
@@ -43,7 +43,7 @@ def generate_launch_description():
             name='ekf_filter_node_odom',
             output='screen',
             parameters=[ekf_config_path, use_sim_time],
-            remappings=[('/odometry/filtered', '/odometry/local')] # Unique output topic
+            remappings=[('/odometry/filtered', '/odometry/local')] # remap to unique output topic
         ),
         Node(
             package='robot_localization',
@@ -51,7 +51,7 @@ def generate_launch_description():
             name='ekf_filter_node_map',
             output='screen',
             parameters=[ekf_config_path, use_sim_time],
-            remappings=[('/odometry/filtered', '/odometry/global')] # Unique output topic
+            remappings=[('/odometry/filtered', '/odometry/global')] # remap to anotha output topic
         ),
 
         Node(
@@ -67,7 +67,6 @@ def generate_launch_description():
                  use_sim_time,
             ]
         ),
-
 
         # camera
         Node(

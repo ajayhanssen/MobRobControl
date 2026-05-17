@@ -1,3 +1,13 @@
+# inspiration:
+# https://docs.ros.org/en/melodic/api/robot_localization/html/state_estimation_nodes.html#parameters-common-to-ekf-localization-node-and-ukf-localization-node
+# https://github.com/samshoni/Extended-Kalman-Filter-ros2-sensor-fusion/blob/main/config/ekf.yaml
+
+# X, Y, Z
+# R, P, Y
+# Xd, Yd, Zd
+# Rd, Pd, Yd
+# Xdd, Ydd, Zdd
+
 ekf_filter_node_odom:
   ros__parameters:
     frequency: 30.0

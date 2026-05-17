@@ -1,4 +1,4 @@
-# huge inspiration for the tf2 listener part from
+# inspiration for the tf2 listener part from
 # https://docs.ros.org/en/humble/Tutorials/Intermediate/Tf2/Writing-A-Tf2-Listener-Py.html
 
 #-------------------------------------------------------------------------------#
@@ -21,7 +21,7 @@ class MobrobController(Node):
     def __init__(self):
         super().__init__('mobrob_controller')
 
-        # launch parameters (also pure pursuit)
+        # launch parameters (also pure pursuit stuff)
         self.robname = self.declare_parameter('robname', 'rob1').get_parameter_value().string_value
         self.linear_velocity = self.declare_parameter('lin_vel', 0.11).get_parameter_value().double_value
         self.max_angular_vel = self.declare_parameter('max_angular_vel', np.pi/2).get_parameter_value().double_value
