@@ -18,7 +18,7 @@ class CameraSimNode(Node):
         self.create_subscription(Odometry, '/rob1/odom', self._odom_callback, 10)
         self.pose_pub = self.create_publisher(PoseWithCovarianceStamped, '/rob1/pose', 10)
 
-        self.create_timer(1.0 / 10.0, self._publish_pose)  # 2 Hz
+        self.create_timer(1.0 / 2.0, self._publish_pose)  # 2 Hz
 
     def _odom_callback(self, msg: Odometry):
         self._latest_odom = msg

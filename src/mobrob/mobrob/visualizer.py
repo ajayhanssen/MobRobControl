@@ -17,7 +17,8 @@ class TVVisualizer(Node):
         # pygaym setup
         pygame.init()
 
-        self.screen_res = (2560, 1440)
+        #self.screen_res = (2560, 1440)
+        self.screen_res = (1920, 1080)
         self.screen = pygame.display.set_mode(self.screen_res, pygame.FULLSCREEN)
         pygame.display.set_caption("Robot Path Overlay")
 

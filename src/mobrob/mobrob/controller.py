@@ -37,7 +37,7 @@ class MobrobController(Node):
         self.path_sub = self.create_subscription(Path, f'/{self.robname}/path', self.path_callback, 10)
 
         # velocity publisher
-        self.ctrl_cmd_pub = self.create_publisher(Twist, f'/{self.robname}/cmd_vel', 10)
+        self.ctrl_cmd_pub = self.create_publisher(Twist, f'/{self.robname}/cmd_vel_nav', 10)
 
         # create 10Hz control loop
         self.timer = self.create_timer(0.1, self.control_loop)
@@ -57,7 +57,7 @@ class MobrobController(Node):
         try:
             # get most recent transform
             now = rclpy.time.Time()
-            trans = self.tf_buffer.lookup_transform('world', self.robname, now)
+            trans = self.tf_buffer.lookup_transform('map', self.robname, now)
 
             # get translation
             robot_x = trans.transform.translation.x
@@ -90,7 +90,7 @@ class MobrobController(Node):
 
         except TransformException as ex:
             self.get_logger().info(
-                f'Could not transform world to {self.robname}: {ex}')
+                f'Could not transform map to {self.robname}: {ex}')
             return
     
     def get_lookahead_point(self, rx, ry):

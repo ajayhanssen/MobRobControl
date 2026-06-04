@@ -1,0 +1,20 @@
+twist_mux:
+  ros__parameters:
+    topics:
+      # emergency sotp
+      emergency:
+        topic: /rob1/cmd_vel_emergency
+        timeout: 0.5
+        priority: 100
+      
+      # controlla node
+      navigation:
+        topic: /rob1/cmd_vel_nav
+        timeout: 0.5
+        priority: 50
+      
+      # teleop node, why not
+      joystick:
+        topic: /rob1/cmd_vel_teleop
+        timeout: 2.0
+        priority: 80

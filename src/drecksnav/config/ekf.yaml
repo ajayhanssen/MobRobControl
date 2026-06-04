@@ -1,0 +1,53 @@
+# inspiration:
+# https://docs.ros.org/en/melodic/api/robot_localization/html/state_estimation_nodes.html#parameters-common-to-ekf-localization-node-and-ukf-localization-node
+# https://github.com/samshoni/Extended-Kalman-Filter-ros2-sensor-fusion/blob/main/config/ekf.yaml
+
+# X, Y, Z
+# R, P, Y
+# Xd, Yd, Zd
+# Rd, Pd, Yd
+# Xdd, Ydd, Zdd
+
+ekf_filter_node_odom:
+  ros__parameters:
+    frequency: 30.0
+    two_d_mode: true
+    publish_tf: true
+
+    map_frame: map
+    odom_frame: odom
+    base_link_frame: base_link
+    world_frame: odom
+
+    odom0: /rob1/odom
+    odom0_config: [false, false, false,
+                   false, false, false,
+                   true,  true,  false,
+                   false, false, true,
+                   false, false, false]
+
+ekf_filter_node_map:
+  ros__parameters:
+    frequency: 30.0
+    two_d_mode: true
+    publish_tf: true
+
+    map_frame: map
+    odom_frame: odom
+    base_link_frame: base_link
+    world_frame: map
+
+    odom0: /rob1/odom
+    odom0_config: [false, false, false,
+                   false, false, false,
+                   true,  true,  false,
+                   false, false, true,
+                   false, false, false]
+
+    pose0: /rob1/pose
+    pose0_config: [true,  true,  false,
+                   false, false, true,
+                   false, false, false,
+                   false, false, false,
+                   false, false, false]
+    pose0_differential: false

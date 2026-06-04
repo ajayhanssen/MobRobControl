@@ -21,29 +21,29 @@ class PathPublisher(Node):
 
     def timer_callback(self):
         msg = Path()
-        msg.header.frame_id = 'world'
+        msg.header.frame_id = 'map'
         msg.header.stamp = self.get_clock().now().to_msg()
 
         #self.publisher.publish(msg)
         #self.get_logger().info(f"Sent: {msg} .")
 
         # test circle
-        radius = 1.0 #m
+        radius = 0.2 #m
         num_points = 50
 
         for i in range(num_points):
             angle = 2 * np.pi * i / num_points
             
             pose = PoseStamped()
-            pose.header.frame_id = 'world'
-            pose.pose.position.x = 3 + radius * np.cos(angle)
-            pose.pose.position.y = 3 + radius * np.sin(angle)
+            pose.header.frame_id = 'map'
+            pose.pose.position.x = 0.7 + radius * np.cos(angle)
+            pose.pose.position.y = 0.3 + radius * np.sin(angle)
             pose.pose.position.z = 0.0
             
             msg.poses.append(pose)
 
         self.publisher.publish(msg)
-        #self.get_logger().info(f"Published circular path with {num_points} points")
+        #self.get_logger().info(f"Published circle path with {num_points} points")
 
 
 def main(args=None):

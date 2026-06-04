@@ -58,7 +58,7 @@ class TVVisualizer(Node):
         # Try to get robot position via TF
         try:
             now = rclpy.time.Time()
-            trans = self.tf_buffer.lookup_transform('world', self.robname, now)
+            trans = self.tf_buffer.lookup_transform('map', self.robname, now)
             self.robot_pos = (trans.transform.translation.x, trans.transform.translation.y)
         except Exception:
             pass

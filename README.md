@@ -8,8 +8,21 @@ source install/setup.bash
 ~~~
 
 Launch nodes:
+
+
+When not using gazebo:
+~~~
+ros2 launch mobrob_ekf mobrob_ekf_launch.py use_sim_time:=false
+~~~
+
+When using gazebo:
 ~~~
 ros2 launch mobrob_ekf mobrob_ekf_launch.py
+~~~
+
+To not use Rviz, but pygame (for TV visualization)
+~~~
+ros2 launch mobrob_ekf mobrob_ekf_launch.py use_rviz:=false
 ~~~
 
 REP105:

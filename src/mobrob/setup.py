@@ -13,6 +13,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name, 'launch'), glob('launch/*')),
+        (os.path.join('share', package_name, 'config'), glob('config/*.yaml')),
         (os.path.join('share', package_name, 'rviz'), ['rviz/mobrob.rviz']),
     ],
     install_requires=['setuptools'],
@@ -34,6 +35,7 @@ setup(
             'visualizer = mobrob.visualizer:main',
             'camera = mobrob.camera:main',
             'path_publisher = mobrob.path_publisher:main',
+            'watchdog = mobrob_ekf.watchdog:main',
         ],
     },
 )

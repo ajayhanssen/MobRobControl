@@ -8,7 +8,7 @@ from rclpy.node import Node
 from tf2_ros import TransformBroadcaster
 
 from geometry_msgs.msg import TransformStamped
-from geometry_msgs.msg import PoseStamped
+from geometry_msgs.msg import PoseWithCovarianceStamped
 #-------------------------------------------------------------------------------#
 
 
@@ -26,7 +26,7 @@ class FramePublisher(Node):
         # Subscribe to a rob{1}{2}/pose topic and call handle_rob_pose
         # callback function on each message
         self.subscription = self.create_subscription(
-            PoseStamped,
+            PoseWithCovarianceStamped,
             f'/{self.robname}/pose',
             self.handle_rob_pose,
             1)
@@ -38,17 +38,17 @@ class FramePublisher(Node):
         # Read message content and assign it to
         # corresponding tf variables
         t.header.stamp = msg.header.stamp
-        t.header.frame_id = 'world'
+        t.header.frame_id = 'map'
         t.child_frame_id = self.robname
 
-        t.transform.translation.x = msg.pose.position.x
-        t.transform.translation.y = msg.pose.position.y
-        t.transform.translation.z = msg.pose.position.z
+        t.transform.translation.x = msg.pose.pose.position.x
+        t.transform.translation.y = msg.pose.pose.position.y
+        t.transform.translation.z = msg.pose.pose.position.z
 
-        t.transform.rotation.x = msg.pose.orientation.x
-        t.transform.rotation.y = msg.pose.orientation.y
-        t.transform.rotation.z = msg.pose.orientation.z
-        t.transform.rotation.w = msg.pose.orientation.w
+        t.transform.rotation.x = msg.pose.pose.orientation.x
+        t.transform.rotation.y = msg.pose.pose.orientation.y
+        t.transform.rotation.z = msg.pose.pose.orientation.z
+        t.transform.rotation.w = msg.pose.pose.orientation.w
 
         self.tf_broadcaster.sendTransform(t)
 
