@@ -17,6 +17,14 @@ class OdometryStamper(Node):
         msg.header.stamp = self.get_clock().now().to_msg()
         #msg.header.stamp.sec = 0       # kein timestamp gnagget alles
         #msg.header.stamp.nanosec = 0
+        msg.pose.pose.position.x = 0.0
+        msg.pose.pose.position.y = 0.0
+        msg.pose.pose.position.z = 0.0
+        msg.pose.pose.orientation.x = 1.0
+        msg.pose.pose.orientation.y = 0.0
+        msg.pose.pose.orientation.z = 0.0
+        msg.pose.pose.orientation.w = 0.0
+
         self.odom_pub.publish(msg)
 
 
