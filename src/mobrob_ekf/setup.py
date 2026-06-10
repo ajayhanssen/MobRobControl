@@ -34,6 +34,7 @@ setup(
             'camera = mobrob_ekf.camera:main',
             'path_publisher = mobrob_ekf.path_publisher:main',
             'watchdog = mobrob_ekf.watchdog:main',
+            'stamper = mobrob_ekf.odom_stamper:main',
         ],
     },
 )

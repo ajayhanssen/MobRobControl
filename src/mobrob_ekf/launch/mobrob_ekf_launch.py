@@ -80,7 +80,17 @@ def generate_launch_description():
         Node(
             package='mobrob_ekf',
             executable='watchdog',
-            name='watchdog_cam',
+            name='watchdog_cam1',
+            parameters=[
+                {'robname': 'rob1'},
+                use_sim_time,
+            ]
+        ),
+
+        Node(
+            package='mobrob_ekf',
+            executable='stamper',
+            name='odom_stamper1',
             parameters=[
                 {'robname': 'rob1'},
                 use_sim_time,
@@ -91,7 +101,7 @@ def generate_launch_description():
         Node(
             package='mobrob_ekf',
             executable='camera',
-            name='cam',
+            name='cam1',
             parameters=[
                 {'robname': 'rob1'},
                 use_sim_time,
